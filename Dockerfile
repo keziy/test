@@ -6,7 +6,7 @@ RUN apk add --no-cache git sudo wget && \
 	
 COPY blacklist /hosts
 COPY build /hosts/build
-COPY data/* /hosts/data
+COPY data/* /hosts/data/
 COPY entrypoint.sh /hosts
 
 RUN pip install --no-cache-dir --upgrade -r /hosts/requirements.txt
