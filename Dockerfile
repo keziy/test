@@ -5,7 +5,7 @@ RUN apk add --no-cache git sudo wget && \
     wget -q -O hosts/myhosts https://raw.githubusercontent.com/kenbat/gh/master/hosts 
 	
 COPY blacklist /hosts
-#COPY build /hosts
+COPY build /hosts
 COPY data/* /hosts/data
 
 RUN pip install --no-cache-dir --upgrade -r /hosts/requirements.txt
