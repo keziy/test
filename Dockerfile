@@ -14,4 +14,4 @@ WORKDIR /hosts
 
 RUN python3 makeHosts.py && \
     python3 testUpdateHostsFile.py && \
-    python3 updateHostsFile.py -a -e fakenews gambling social -m -x blacklist -o build
+    python3 updateHostsFile.py -a -e fakenews gambling social -m -x blacklist -o build/hosts
