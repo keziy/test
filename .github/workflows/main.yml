@@ -28,11 +28,11 @@ jobs:
           #source: hosts/build/hosts
           #destination: ./build/hosts
           
-    - name: Docker
-      run: |
-        docker build --tag hosts:test .
-        exec docker run -v "/var/run/docker.sock":"/var/run/docker.sock" --name hosts-test --entrypoint="/hosts/entrypoint.sh" hosts:test
-        docker cp hosts-test:hosts/build/hosts ./build/hosts
+      - name: Docker
+        run: |
+          docker build --tag hosts:test .
+          exec docker run -v "/var/run/docker.sock":"/var/run/docker.sock" --name hosts-test --entrypoint="/hosts/entrypoint.sh" hosts:test
+          docker cp hosts-test:hosts/build/hosts ./build/hosts
         
       - name: Version
         id: get_version
