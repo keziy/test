@@ -1,0 +1,9 @@
+{
+    "name": "Brave Browser connection blocking HOSTS",
+    "description": "Blocks all unneeded Brave Browser connections, assuming you do not want Rewards.",
+    "homeurl": "https://gitlab.com/CHEF-KOCH/brave-browser-hardening/",
+    "frequency": "weekly",
+    "issues": "https://gitlab.com/CHEF-KOCH/brave-browser-hardening/-/issues",
+    "url": "https://gitlab.com/CHEF-KOCH/brave-browser-hardening/-/raw/main/HOSTS.txt",
+    "license": "ISC"
+}

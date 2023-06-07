@@ -1,0 +1,8 @@
+{
+    "name": "VeleSila-yhosts",
+    "description": "Blocking ad and tracking.",
+    "homeurl": "https://github.com/VeleSila/yhosts",
+    "frequency": "frequently",
+    "issues": "https://github.com/VeleSila/yhosts/issues",
+    "url": "https://raw.githubusercontent.com/VeleSila/yhosts/master/hosts.txt"
+}

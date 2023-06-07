@@ -1,0 +1,29 @@
+name: build
+
+on:
+  schedule:
+    - cron: '0 17 * * *'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@v3
+      - name: Build Push
+        uses: docker/build-push-action@v2
+        with:
+          tags: hosts_contracts
+      - name: Docker Run
+        uses: addnab/docker-run-action@v3
+        with:
+          image: hosts_contracts
+          options: --name hosts_contracts_container
+          # run: /entrypoint.sh
+      - name: Docker Copy
+        uses: tj-actions/docker-cp@v2
+        with:
+          container: hosts_contracts_container
+          source: /build/hosts
+          destination: ./build/hosts
