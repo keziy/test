@@ -1,6 +1,6 @@
 FROM docker.io/python:3.9.17-alpine
 
-RUN export LC_ALL=en_US.utf-8 && export LANG=en_US.utf-8
+RUN export LC_ALL=C.UTF-8 && export LANG=C.UTF-8
 
 RUN apk add --no-cache git sudo wget && \
     git clone https://github.com/StevenBlack/hosts.git && \
@@ -13,6 +13,6 @@ RUN pip install --no-cache-dir --upgrade -r /hosts/requirements.txt
 
 WORKDIR /hosts
 
-RUN python makeHosts.py && \
-    python testUpdateHostsFile.py && \
-    python updateHostsFile.py -a -e fakenews gambling social -m -x blacklist -o build
+RUN makeHosts.py && \
+    testUpdateHostsFile.py && \
+    updateHostsFile.py -a -e fakenews gambling social -m -x blacklist -o build
