@@ -27,12 +27,12 @@ jobs:
           container: hosts_contracts_container
           source: hosts/build/hosts
           destination: ./build/hosts
-      #- name: Update
-        #run: |
-          #git config user.name "keziy"
-          #git config user.email "135702408+keziy@users.noreply.github.com"
-          #git remote set-url origin https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
-          #git add .
-          #git commit --allow-empty -m "$(git log -1 --pretty=%s)"
-          #git push
+      - name: Update
+        run: |
+          git config user.name "keziy"
+          git config user.email "135702408+keziy@users.noreply.github.com"
+          git remote set-url origin https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
+          git add .
+          git commit --allow-empty -m "$(git log -1 --pretty=%s)"
+          git push
           
