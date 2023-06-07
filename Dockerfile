@@ -13,6 +13,6 @@ RUN pip install --no-cache-dir --upgrade -r /hosts/requirements.txt
 
 WORKDIR /hosts
 
-RUN makeHosts.py && \
-    testUpdateHostsFile.py && \
-    updateHostsFile.py -a -e fakenews gambling social -m -x blacklist -o build
+RUN python3 makeHosts.py && \
+    python3 testUpdateHostsFile.py && \
+    python3 updateHostsFile.py -a -e fakenews gambling social -m -x blacklist -o build
