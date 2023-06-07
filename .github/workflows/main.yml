@@ -30,7 +30,7 @@ jobs:
       - name: Get Version
         id: get_version
         run: |
-          echo "VER=$(curl -IkLs -o /tmp/NUL -w %{url_effective} https://github.com/StevenBlack/hosts/releases/latest | grep -o "[^/]*$") >> $GITHUB_OUTPUT
+          echo "VER=$(curl -IkLs -o /tmp/NUL -w %{url_effective} https://github.com/StevenBlack/hosts/releases/latest | grep -o "[^/]*$")" >> $GITHUB_OUTPUT
       #- name: Update
         #run: |
           #git config user.name "keziy"
