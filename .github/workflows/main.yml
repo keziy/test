@@ -31,19 +31,27 @@ jobs:
       - name: Docker
         run: |
           docker build --tag hosts:test .
-          exec docker run -v "/var/run/docker.sock":"/var/run/docker.sock" --name hosts-test --entrypoint=/hosts/entrypoint.sh hosts:test
+          docker run -v "/var/run/docker.sock":"/var/run/docker.sock" --name hosts-test --entrypoint=/hosts/entrypoint.sh hosts:test
           docker cp hosts-test:hosts/build/hosts ./build/hosts
         
-      - name: Version
-        id: get_version
+      #- name: Version
+        #id: get_version
+        #run: |
+          #echo "VER=$(curl -IkLs -o /tmp/NUL -w %{url_effective} https://github.com/StevenBlack/hosts/releases/latest | grep -o "[^/]*$")" >> $GITHUB_OUTPUT
+      #- name: Upload 
+        #uses: svenstaro/upload-release-action@v2
+        #with:
+          #repo_token: ${{ secrets.GITHUB_TOKEN }}
+          #file: ./build/hosts
+          #tag: ${{ steps.get_version.outputs.VER }}
+          #overwrite: true
+          #file_glob: true
+      - name: commit
         run: |
-          echo "VER=$(curl -IkLs -o /tmp/NUL -w %{url_effective} https://github.com/StevenBlack/hosts/releases/latest | grep -o "[^/]*$")" >> $GITHUB_OUTPUT
-      - name: Upload 
-        uses: svenstaro/upload-release-action@v2
-        with:
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: ./build/hosts
-          tag: ${{ steps.get_version.outputs.VER }}
-          overwrite: true
-          file_glob: true
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git remote set-url origin https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
+          git add .
+          git commit --allow-empty -m "$(git log -1 --pretty=%s)"
+          git push
           
