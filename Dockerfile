@@ -3,7 +3,7 @@ FROM docker.io/python:3.9.17-alpine
 #RUN export LC_ALL=C.UTF-8 && export LANG=C.UTF-8
 
 RUN apk add --no-cache git sudo wget && \
-    git clone https://github.com/StevenBlack/hosts.git 
+    git clone https://github.com/StevenBlack/hosts.git && \
     wget -q -O hosts/myhosts https://raw.githubusercontent.com/kenbat/gh/master/hosts 
 	
 COPY blacklist /hosts

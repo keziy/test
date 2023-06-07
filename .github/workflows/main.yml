@@ -25,5 +25,5 @@ jobs:
         uses: tj-actions/docker-cp@v2
         with:
           container: hosts_contracts_container
-          source: /build
-          destination: ./build
+          source: build/hosts
+          destination: ./build/hosts
