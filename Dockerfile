@@ -13,9 +13,5 @@ RUN pip install --no-cache-dir --upgrade -r /hosts/requirements.txt
 
 WORKDIR /hosts
 
-#RUN python3 makeHosts.py && \
-    #python3 testUpdateHostsFile.py && \
-    #python3 updateHostsFile.py -a -e fakenews gambling social -m -x blacklist -o build
-
 RUN chmod +x entrypoint.sh
 CMD [ "/entrypoint.sh" ]	
