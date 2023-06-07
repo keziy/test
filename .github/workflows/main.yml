@@ -20,7 +20,7 @@ jobs:
         with:
           image: hosts_contracts
           options: --name hosts_contracts_container
-          #run: /hosts/entrypoint.sh
+          run: /hosts/entrypoint.sh
       - name: Docker Copy
         uses: tj-actions/docker-cp@v2
         with:
