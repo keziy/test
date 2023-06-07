@@ -1,6 +1,6 @@
 FROM docker.io/python:3.9.17-alpine
 
-ENV en_US.utf-8
+ENV LANG en_US.utf-8
 ENV LC_ALL en_US.utf-8
 
 RUN apk add --no-cache git sudo wget && \
@@ -14,7 +14,6 @@ RUN pip install --no-cache-dir --upgrade -r /hosts/requirements.txt
 
 WORKDIR /hosts
 
-#RUN python makeHosts.py && \
-    #python testUpdateHostsFile.py && \
-    #python updateHostsFile.py -a -e fakenews gambling social -m -x blacklist -o build
-RUN locale
+RUN python makeHosts.py && \
+    python testUpdateHostsFile.py && \
+    python updateHostsFile.py -a -e fakenews gambling social -m -x blacklist -o build
