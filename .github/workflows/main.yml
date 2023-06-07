@@ -27,12 +27,24 @@ jobs:
           container: hosts_contracts_container
           source: hosts/build/hosts
           destination: ./build/hosts
-      - name: Update
+      - name: Get Version
+        id: get_version
         run: |
-          git config user.name "keziy"
-          git config user.email "135702408+keziy@users.noreply.github.com"
-          git remote set-url origin https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
-          git add .
-          git commit --allow-empty -m "$(git log -1 --pretty=%s)"
-          git push
+          echo "VER=$(curl -IkLs -o /tmp/NUL -w %{url_effective} https://github.com/StevenBlack/hosts/releases/latest | grep -o "[^/]*$") >> $GITHUB_OUTPUT
+      #- name: Update
+        #run: |
+          #git config user.name "keziy"
+          #git config user.email "135702408+keziy@users.noreply.github.com"
+          #git remote set-url origin https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
+          #git add .
+          #git commit --allow-empty -m "$(git log -1 --pretty=%s)"
+          #git push
+      - name: Upload Release
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: ./build/hosts
+          tag: ${{ steps.get_version.outputs.VER }}
+          overwrite: true
+          file_glob: true
           
